@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from app.backand.db import Base
 from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
-from .task import Task
+from task import *
 
 
 router = APIRouter(prefix="/user", tags=["user"])
@@ -34,8 +34,8 @@ async def delete_user():
 
 
 class User(Base):
-    __tablname__ = "users"
-    __table_agrs__ = {"extend_existing": True}
+    __tablename__ = "users", {'extend_existing': True}
+    __table_agrs__ = {'extend_existing': True}
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String)
     firstname = Column(String)
@@ -43,7 +43,7 @@ class User(Base):
     age = Column(String)
     slug = Column(String, unique=True, index=True)
 
-    tasks = relationship("Task", back_populates='user')
+    tasks = relationship("Task", back_populates='task')
 
 
 from sqlalchemy.schema import CreateTable

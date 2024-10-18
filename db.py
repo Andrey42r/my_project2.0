@@ -1,8 +1,8 @@
-from sqlalchemy import create_injine
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 from sqlalchemy import Column, Integer, String
 
-engine = create_injine("sqlite:///taskmanager.db", echo=True)
+engine = create_engine("sqlite:///taskmanager.db", echo=True)
 
 class Base(DeclarativeBase):
     pass
